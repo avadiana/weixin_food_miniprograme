@@ -1,0 +1,160 @@
+/* 导航栏样式 */
+.nav-bar {
+  padding: 88rpx 30rpx 20rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  padding: 12rpx;
+  margin-right: 20rpx;
+}
+
+.back-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 8rpx;
+}
+
+.back-btn text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.page-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 表单样式 */
+.container {
+  padding-top: 168rpx;
+  padding-bottom: 40rpx;
+}
+
+.form-group {
+  margin: 0 30rpx 40rpx;
+}
+
+.label {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.input {
+  background: #f8f8f8;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  transition: all 0.3s;
+}
+
+.input:focus {
+  background: #fff;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.1);
+}
+
+.picker {
+  background: #f8f8f8;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+}
+
+.placeholder {
+  color: #999;
+}
+
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -10rpx;
+}
+
+.image-item {
+  width: 220rpx;
+  height: 220rpx;
+  margin: 10rpx;
+  position: relative;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+}
+
+.image-item image {
+  width: 100%;
+  height: 100%;
+}
+
+.delete-btn {
+  position: absolute;
+  right: -10rpx;
+  top: -10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+}
+
+.upload-btn {
+  width: 220rpx;
+  height: 220rpx;
+  margin: 10rpx;
+  background: #f8f8f8;
+  border: 2rpx dashed #ddd;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.upload-btn:active {
+  background: #f0f0f0;
+}
+
+.upload-btn .icon {
+  font-size: 60rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.upload-btn .text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.submit-btn {
+  margin: 60rpx 30rpx;
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  border-radius: 12rpx;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(255,107,107,0.3);
+  transition: all 0.3s;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 2rpx 8rpx rgba(255,107,107,0.2);
+} 

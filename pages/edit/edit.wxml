@@ -1,0 +1,78 @@
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="nav-bar">
+    <view class="back-btn" bindtap="goBack">
+      <image class="back-icon" src="/images/back.svg" mode="aspectFit"/>
+      <text>返回</text>
+    </view>
+    <view class="page-title">修改店铺</view>
+  </view>
+
+  <form bindsubmit="submitForm">
+    <view class="form-group">
+      <view class="label">店铺名称</view>
+      <input 
+        class="input" 
+        placeholder="请输入店铺名称" 
+        value="{{name}}"
+        bindinput="onNameInput"
+      />
+    </view>
+
+    <view class="form-group">
+      <view class="label">店铺地址</view>
+      <input 
+        class="input" 
+        placeholder="请输入店铺地址" 
+        value="{{address}}"
+        bindinput="onAddressInput"
+      />
+    </view>
+
+    <view class="form-group">
+      <view class="label">店铺分类</view>
+      <picker 
+        mode="selector" 
+        range="{{categories}}" 
+        bindchange="onCategoryChange"
+      >
+        <view class="picker {{category ? '' : 'placeholder'}}">
+          {{category || '请选择店铺分类'}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-group">
+      <view class="label">店铺图片</view>
+      <view class="image-list">
+        <view 
+          class="image-item" 
+          wx:for="{{photos}}" 
+          wx:key="*this"
+        >
+          <image src="{{item}}" mode="aspectFill"/>
+          <view 
+            class="delete-btn"
+            data-index="{{index}}"
+            bindtap="deleteImage"
+          >×</view>
+        </view>
+        
+        <view 
+          class="upload-btn" 
+          bindtap="chooseImage" 
+          wx:if="{{photos.length < 9}}"
+        >
+          <view class="icon">+</view>
+          <view class="text">上传图片</view>
+        </view>
+      </view>
+    </view>
+
+    <button 
+      class="submit-btn" 
+      loading="{{submitting}}"
+      bindtap="submitForm"
+    >保存修改</button>
+  </form>
+</view> 

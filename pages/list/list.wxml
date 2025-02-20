@@ -1,0 +1,80 @@
+<view class="container">
+  <!-- 标题栏 -->
+  <view class="header">
+    <!-- 背景图片层 -->
+    <image class="header-bg" src="/images/header-bg.jpg" mode="aspectFill"/>
+    <!-- 渐变遮罩层 -->
+    <view class="header-overlay"></view>
+    <view class="header-content">
+      <view class="title">老菊和朋友们的探店地图</view>
+      <view class="subtitle">发现城市中最棒的美食与生活</view>
+      <view class="category-selector" bindtap="showCategorySelect">
+        <text>{{categories[currentCategory]}}</text>
+        <image class="arrow-icon" src="/images/arrow-down.svg" mode="aspectFit"/>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分类导航 -->
+  <view class="category-nav {{isSticky ? 'sticky' : ''}}">
+    <scroll-view scroll-x enable-flex class="nav-scroll">
+      <view 
+        class="nav-item {{currentCategory === index ? 'active' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="index"
+        bindtap="switchCategory"
+        data-index="{{index}}"
+      >
+        <image class="category-icon" src="{{categoryIcons[index]}}" mode="aspectFit"/>
+        <text>{{item}}</text>
+        <view class="active-bar" wx:if="{{currentCategory === index}}"/>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 分类选择器弹窗 -->
+  <view class="category-picker-mask" wx:if="{{showCategoryPicker}}" bindtap="hideCategorySelect">
+    <view class="category-picker" catchtap="stopPropagation">
+      <view 
+        class="picker-item {{currentCategory === index ? 'active' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="index"
+        bindtap="selectCategory"
+        data-index="{{index}}"
+      >
+        <image class="picker-icon" src="{{categoryIcons[index]}}" mode="aspectFit"/>
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="shop-list">
+    <view class="shop-item" wx:for="{{shopList}}" wx:key="_id">
+      <image 
+        class="shop-cover" 
+        mode="aspectFill" 
+        src="{{item.photos[0]}}"
+      />
+      <view class="shop-info">
+        <view class="shop-name">{{item.name}}</view>
+        <view class="shop-category">{{item.category}}</view>
+        <view class="shop-address">{{item.address}}</view>
+      </view>
+      <view class="shop-actions">
+        <view class="action-btn edit-btn" bindtap="editShop" data-id="{{item._id}}">
+          <image class="action-icon" src="/images/edit.svg" mode="aspectFit"/>
+          <text>修改</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+  <view class="no-more" wx:if="{{!hasMore && shopList.length > 0}}">没有更多了</view>
+  <view class="empty" wx:if="{{!loading && shopList.length === 0}}">暂无数据</view>
+  
+  <navigator url="/pages/add/add" class="add-btn">
+    <text class="add-btn-icon">+</text>
+    <text>添加店铺信息</text>
+  </navigator>
+</view> 
