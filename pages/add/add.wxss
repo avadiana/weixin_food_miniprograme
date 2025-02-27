@@ -1,12 +1,71 @@
 /* pages/add/add.wxss */
+/* 页面容器基础样式 */
 .container {
-  padding-top: 168rpx;
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-top: calc(148rpx + env(safe-area-inset-top)); /* 适配不同机型顶部安全区域 */
+  will-change: transform; /* 启用硬件加速 */
+  -webkit-overflow-scrolling: touch; /* 启用弹性滚动 */
+  overscroll-behavior: none; /* 防止滚动串联 */
 }
 
+/* 顶部导航栏样式 */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-top: calc(83rpx + env(safe-area-inset-top));
+  padding-bottom: 13rpx;/*标题栏的留白 */
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  z-index: 100;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+/* 返回按钮样式 */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+/* 返回图标样式 */
+.back-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 12rpx;
+   /* 适配不同分辨率设备 */
+  transform: translateY(1rpx);      
+}
+
+/* 返回按钮文字样式 */
+.back-btn text {
+  font-size: 32rpx;
+  color: #666;
+  position: relative;
+  top: -0.5rpx;
+}
+
+/* 页面标题样式 */
+.page-title {
+    position: absolute; /* 绝对定位方案 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content; /* 或固定宽度 */
+    font-size: 32rpx;
+    font-weight: bold;
+}
+
+/* 表单组样式 */
 .form-group {
-  margin-bottom: 40rpx;
+  margin: 30rpx 30rpx 40rpx;
 }
 
+/* 表单标签样式 */
 .label {
   font-size: 28rpx;
   color: #333;
@@ -14,6 +73,7 @@
   font-weight: 500;
 }
 
+/* 输入框基础样式 */
 .input {
   background: #f8f8f8;
   padding: 24rpx;
@@ -22,11 +82,13 @@
   transition: all 0.3s;
 }
 
+/* 输入框焦点样式 */
 .input:focus {
   background: #fff;
   box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.1);
 }
 
+/* 选择器样式 */
 .picker {
   background: #f8f8f8;
   padding: 24rpx;
@@ -34,16 +96,19 @@
   font-size: 28rpx;
 }
 
+/* 占位符样式 */
 .placeholder {
   color: #999;
 }
 
+/* 图片列表容器 */
 .image-list {
   display: flex;
   flex-wrap: wrap;
   margin: 0 -10rpx;
 }
 
+/* 图片项样式 */
 .image-item {
   width: 220rpx;
   height: 220rpx;
@@ -52,14 +117,20 @@
   border-radius: 12rpx;
   overflow: hidden;
   box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
 }
 
+/* 图片样式 */
 .image-item image {
   width: 100%;
   height: 100%;
   border-radius: 8rpx;
 }
 
+/* 删除按钮样式 */
 .delete-btn {
   position: absolute;
   right: -10rpx;
@@ -75,27 +146,47 @@
   font-size: 32rpx;
 }
 
+/* 上传按钮样式 */
 .upload-btn {
+  width: 220rpx;
+  height: 220rpx;
+  margin: 10rpx;
   background: #f8f8f8;
   border: 2rpx dashed #ddd;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s;
 }
 
+/* 上传按钮点击效果 */
 .upload-btn:active {
   background: #f0f0f0;
 }
 
+/* 上传按钮图标 */
 .upload-btn .icon {
   font-size: 60rpx;
   color: #999;
   margin-bottom: 10rpx;
 }
 
+/* 上传按钮文字 */
 .upload-btn .text {
   font-size: 24rpx;
   color: #999;
 }
 
+/* 提示文字样式 */
+.tips {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+/* 提交按钮样式 */
 .submit-btn {
   margin: 60rpx 30rpx;
   background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
@@ -108,45 +199,156 @@
   transition: all 0.3s;
 }
 
+/* 提交按钮点击效果 */
 .submit-btn:active {
   transform: scale(0.98);
   box-shadow: 0 2rpx 8rpx rgba(255,107,107,0.2);
 }
 
-/* 导航栏样式 */
-.nav-bar {
-  padding: 88rpx 30rpx 20rpx;
+/* 标签容器样式 */
+.tags-container {
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  perspective: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  padding: 24rpx;
   background: #fff;
-  display: flex;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+  border-radius: 16rpx;
+  margin: 0 -12rpx;
 }
 
-.back-btn {
-  display: flex;
-  align-items: center;
-  padding: 12rpx;
-  margin-right: 20rpx;
-}
-
-.back-icon {
-  width: 36rpx;
-  height: 36rpx;
-  margin-right: 8rpx;
-}
-
-.back-btn text {
-  font-size: 28rpx;
+/* 标签项样式 */
+.tag-item {
+  will-change: transform, background-color;
+  transform: translateZ(0);
+  padding: 12rpx 24rpx;
+  background: #f5f5f5;
+  border-radius: 32rpx;
+  font-size: 26rpx;
   color: #666;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.page-title {
-  font-size: 32rpx;
-  font-weight: bold;
+/* 选中标签样式 */
+.tag-item.selected {
+  background: var(--primary, #2953FF);
+  color: #fff;
+  box-shadow: 0 4rpx 8rpx rgba(41, 83, 255, 0.2);
+}
+
+/* 添加标签按钮 */
+.add-tag-btn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.add-tag-btn:active {
+  transform: scale(0.95);
+  background: #e5e5e5;
+}
+
+/* 自定义标签输入框容器 */
+.custom-tag-input {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  background: #fff;
+  padding: 8rpx;
+  border-radius: 32rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 标签输入框 */
+.tag-input {
+  width: 240rpx;
+  height: 56rpx;
+  background: #f8f8f8;
+  border-radius: 28rpx;
+  padding: 0 24rpx;
+  font-size: 26rpx;
   color: #333;
+}
+
+/* 标签输入框按钮组 */
+.tag-input-btns {
+  display: flex;
+  gap: 8rpx;
+}
+
+/* 确认和取消按钮 */
+.confirm-btn,
+.cancel-btn {
+  min-width: 80rpx !important;
+  margin: 0 !important;
+  padding: 0 16rpx !important;
+  height: 56rpx !important;
+  line-height: 56rpx !important;
+  font-size: 24rpx;
+  border-radius: 28rpx !important;
+}
+
+.confirm-btn {
+  background: var(--primary, #2953FF) !important;
+  color: #fff !important;
+}
+
+.cancel-btn {
+  background: #f5f5f5 !important;
+  color: #666 !important;
+}
+
+.confirm-btn:active,
+.cancel-btn:active {
+  transform: scale(0.95);
+}
+
+/* 标签波纹效果 */
+.tag-item:active {
+  transform: scale(0.95);
+}
+
+/* 在原有样式基础上添加 */
+.menu-photos {
+  margin-bottom: 12rpx;
+}
+
+.photo-item image {
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+}
+
+.menu-photos .photo-item {
+  height: 300rpx; /* 菜单图片显示更大一些 */
+}
+
+/* 备注文本框样式 */
+.textarea {
+  background: #f8f8f8;
+  padding: 24rpx;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  width: 100%;
+  height: 200rpx;
+  box-sizing: border-box;
+  transition: all 0.3s;
+}
+
+.textarea:focus {
+  background: #fff;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.1);
 }

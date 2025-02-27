@@ -1,0 +1,88 @@
+<!-- 贡献排行榜页面 -->
+<view class="container" style="padding-top: {{statusBarHeight + navBarHeight}}px">
+  <!-- 自定义导航栏 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px; height: {{navBarHeight}}px;">
+    <view class="nav-content">
+      <!-- 返回按钮 -->
+      <view class="back-btn" bindtap="goBack">
+        <image class="back-icon" src="/images/back.svg" mode="aspectFit"/>
+        <text>返回</text>
+      </view>
+      <!-- 页面标题 -->
+      <view class="page-title">贡献排行榜</view>
+    </view>
+  </view>
+
+  <!-- 排行榜列表区域 -->
+  <view class="ranking-list">
+    <!-- 加载中状态 -->
+    <view class="loading" wx:if="{{loading}}">
+      <view class="loading-icon"></view>
+      <text>加载中...</text>
+    </view>
+
+    <!-- 排行榜内容 -->
+    <block wx:else>
+      <!-- 前三名特殊展示区域 -->
+      <view class="top-three" wx:if="{{rankingList.length > 0}}">
+        <!-- 第二名 -->
+        <view class="top-item second" wx:if="{{rankingList[1]}}">
+          <view class="crown silver"></view>
+          <image class="avatar" src="{{rankingList[1].avatarUrl}}" mode="aspectFill"/>
+          <text class="nickname">{{rankingList[1].nickName}}</text>
+          <text class="count">{{rankingList[1].count}}家</text>
+          <text class="rank-num">2</text>
+        </view>
+        
+        <!-- 第一名 -->
+        <view class="top-item first" wx:if="{{rankingList[0]}}">
+          <view class="crown gold"></view>
+          <image class="avatar" src="{{rankingList[0].avatarUrl}}" mode="aspectFill"/>
+          <text class="nickname">{{rankingList[0].nickName}}</text>
+          <text class="count">{{rankingList[0].count}}家</text>
+          <text class="rank-num">1</text>
+        </view>
+        
+        <!-- 第三名 -->
+        <view class="top-item third" wx:if="{{rankingList[2]}}">
+          <view class="crown bronze"></view>
+          <image class="avatar" src="{{rankingList[2].avatarUrl}}" mode="aspectFill"/>
+          <text class="nickname">{{rankingList[2].nickName}}</text>
+          <text class="count">{{rankingList[2].count}}家</text>
+          <text class="rank-num">3</text>
+        </view>
+      </view>
+
+      <!-- 其他排名列表 -->
+      <view class="other-rankings">
+        <!-- 第4名及以后的排名项 -->
+        <view class="ranking-item {{item.isCurrentUser ? 'current-user' : ''}}"
+              wx:for="{{rankingList}}"
+              wx:key="openid"
+              wx:if="{{index > 2}}">
+          <!-- 排名序号 -->
+          <view class="rank">
+            {{item.rank}}
+          </view>
+
+          <!-- 用户信息 -->
+          <view class="user-info">
+            <image class="avatar" src="{{item.avatarUrl}}" mode="aspectFill"/>
+            <text class="nickname">{{item.nickName}}</text>
+          </view>
+
+          <!-- 贡献数量 -->
+          <view class="count">
+            <text class="count-num">{{item.count}}</text>
+            <text class="count-label">家店铺</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 无数据提示 -->
+      <view class="empty" wx:if="{{rankingList.length === 0}}">
+        <text>暂无排行数据</text>
+      </view>
+    </block>
+  </view>
+</view> 

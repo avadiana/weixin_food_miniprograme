@@ -9,72 +9,192 @@
     <view class="page-title">添加店铺</view>
   </view>
 
-  <form bindsubmit="submitForm">
-    <view class="form-group">
-      <view class="label">店铺名称</view>
-      <input 
-        class="input" 
-        placeholder="请输入店铺名称" 
-        value="{{name}}"
-        bindinput="onNameInput"
-      />
-    </view>
+  <!-- 登录提示区域 -->
+  <view class="login-container" wx:if="{{!isLogin}}">
+    <button 
+      class="login-btn" 
+      open-type="getUserInfo" 
+      bindgetuserinfo="getUserInfo"
+    >微信登录</button>
+  </view>
 
-    <view class="form-group">
-      <view class="label">店铺地址</view>
-      <input 
-        class="input" 
-        placeholder="请输入店铺地址" 
-        value="{{address}}"
-        bindinput="onAddressInput"
-      />
-    </view>
+  <!-- 店铺信息表单区域 -->
+  <block wx:else>
+    <form bindsubmit="submitForm">
+      <!-- 店铺名称输入 -->
+      <view class="form-group">
+        <view class="label">店铺名称</view>
+        <input 
+          class="input" 
+          placeholder="请输入店铺名称" 
+          value="{{name}}"
+          bindinput="onNameInput"
+        />
+      </view>
 
-    <view class="form-group">
-      <view class="label">店铺分类</view>
-      <picker 
-        mode="selector" 
-        range="{{categories}}" 
-        bindchange="onCategoryChange"
-      >
-        <view class="picker {{category ? '' : 'placeholder'}}">
-          {{category || '请选择店铺分类'}}
-        </view>
-      </picker>
-    </view>
+      <!-- 店铺地址输入 -->
+      <view class="form-group">
+        <view class="label">店铺地址</view>
+        <input 
+          class="input" 
+          placeholder="请输入店铺地址" 
+          value="{{address}}"
+          bindinput="onAddressInput"
+        />
+      </view>
 
-    <view class="form-group">
-      <view class="label">店铺图片</view>
-      <view class="image-list">
-        <view 
-          class="image-item" 
-          wx:for="{{photos}}" 
-          wx:key="*this"
+      <!-- 店铺分类选择 -->
+      <view class="form-group">
+        <view class="label">店铺分类</view>
+        <picker 
+          mode="selector" 
+          range="{{categories}}" 
+          bindchange="onCategoryChange"
         >
-          <image src="{{item}}" mode="aspectFill"/>
+          <view class="picker {{category ? '' : 'placeholder'}}">
+            {{category || '请选择店铺分类'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 人均消费输入 -->
+      <view class="form-group">
+        <view class="label">人均消费</view>
+        <input 
+          class="input" 
+          type="number" 
+          placeholder="请输入人均消费金额" 
+          value="{{averagePrice}}"
+          bindinput="onAveragePriceInput"
+        />
+      </view>
+
+      <!-- 店铺图片上传区域 -->
+      <view class="form-group">
+        <view class="label">店铺图片</view>
+        <view class="image-list">
+          <!-- 已上传图片展示 -->
           <view 
-            class="delete-btn"
-            data-index="{{index}}"
-            bindtap="deleteImage"
-          >×</view>
-        </view>
-        
-        <view 
-          class="upload-btn" 
-          bindtap="chooseImage" 
-          wx:if="{{photos.length < 9}}"
-        >
-          <view class="icon">+</view>
-          <view class="text">上传图片</view>
+            class="image-item" 
+            wx:for="{{photos}}" 
+            wx:key="*this"
+          >
+            <image src="{{item}}" mode="aspectFill"/>
+            <view 
+              class="delete-btn"
+              data-index="{{index}}"
+              bindtap="deleteImage"
+            >×</view>
+          </view>
+          
+          <!-- 上传按钮 -->
+          <view 
+            class="upload-btn" 
+            bindtap="chooseImage" 
+            wx:if="{{photos.length < 9}}"
+          >
+            <view class="icon">+</view>
+            <view class="text">上传图片</view>
+          </view>
         </view>
       </view>
-    </view>
 
-    <button 
-      class="submit-btn" 
-      type="primary" 
-      loading="{{submitting}}"
-      bindtap="submitForm"
-    >提交</button>
-  </form>
+      <!-- 菜单图片上传区域 -->
+      <view class="form-group">
+        <view class="label">菜单图片</view>
+        <view class="image-list">
+          <!-- 已上传菜单图片展示 -->
+          <view 
+            class="image-item" 
+            wx:for="{{menuPhotos}}" 
+            wx:key="*this"
+          >
+            <image src="{{item}}" mode="aspectFill"/>
+            <view 
+              class="delete-btn"
+              data-index="{{index}}"
+              bindtap="deleteMenuPhoto"
+            >×</view>
+          </view>
+          
+          <!-- 菜单上传按钮 -->
+          <view 
+            class="upload-btn" 
+            bindtap="chooseMenuImage" 
+            wx:if="{{menuPhotos.length < 5}}"
+          >
+            <view class="icon">+</view>
+            <view class="text">上传菜单</view>
+          </view>
+        </view>
+        <view class="tips">最多上传5张菜单图片</view>
+      </view>
+
+      <!-- 店铺标签选择区域 -->
+      <view class="form-item">
+        <text class="label">店铺标签</text>
+        <view class="tags-container">
+          <!-- 预设标签列表 -->
+          <view class="tag-item {{item.selected ? 'selected' : ''}}" 
+                wx:for="{{tagOptions}}" 
+                wx:key="value"
+                bindtap="toggleTag"
+                data-tag="{{item.value}}">
+            {{item.label}}
+          </view>
+          <!-- 自定义标签输入框 -->
+          <view class="custom-tag-input" wx:if="{{showCustomTagInput}}">
+            <input 
+              class="tag-input"
+              type="text"
+              value="{{customTag}}"
+              placeholder="请输入标签名称"
+              bindinput="onCustomTagInput"
+              bindconfirm="onCustomTagConfirm"
+              bindblur="onCustomTagBlur"
+              focus="{{showCustomTagInput}}"
+              confirm-hold="{{true}}"
+            />
+            <view class="tag-input-btns">
+              <button 
+                class="confirm-btn" 
+                size="mini" 
+                bindtap="confirmCustomTag"
+                disabled="{{!customTag}}"
+              >确定</button>
+              <button 
+                class="cancel-btn" 
+                size="mini" 
+                bindtap="hideCustomTagInput"
+              >取消</button>
+            </view>
+          </view>
+          <!-- 添加自定义标签按钮 -->
+          <view class="add-tag-btn" bindtap="showCustomTagInput">
+            <text>+</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 备注信息输入 -->
+      <view class="form-group">
+        <view class="label">备注信息</view>
+        <textarea 
+          class="textarea" 
+          placeholder="添加一些备注信息（可选）" 
+          value="{{remarks}}"
+          bindinput="onRemarksInput"
+          maxlength="200"
+        />
+        <view class="tips">最多200字</view>
+      </view>
+
+      <!-- 提交按钮 -->
+      <button 
+        class="submit-btn" 
+        loading="{{submitting}}"
+        bindtap="submitForm"
+      >提交</button>
+    </form>
+  </block>
 </view>

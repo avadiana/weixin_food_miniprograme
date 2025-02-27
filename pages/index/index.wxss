@@ -1,10 +1,207 @@
 /**index.wxss**/
+/* 页面基础样式设置 */
 page {
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
+
+/* 页面滚动区域样式 */
 .scrollarea {
   flex: 1;
   overflow-y: hidden;
+}
+
+/* 页面主容器样式 */
+.container {
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding-bottom: env(safe-area-inset-bottom); /* 适配底部安全区域 */
+}
+
+/* 分类导航栏样式 */
+.category-bar {
+  position: sticky; /* 固定在顶部 */
+  top: 0;
+  background: #fff;
+  white-space: nowrap; /* 防止分类换行 */
+  padding: 24rpx;
+  z-index: 10;
+}
+
+/* 分类选项样式 */
+.category-item {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  margin-right: 16rpx;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+  color: #666;
+  background: #f5f5f5;
+  transition: all 0.3s;
+}
+
+/* 分类选项激活状态样式 */
+.category-item.active {
+  color: #fff;
+  background: var(--primary, #2953FF);
+}
+
+/* 店铺列表容器样式 */
+.shop-list {
+  padding: 24rpx;
+}
+
+/* 店铺卡片基础样式 */
+.shop-card {
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 店铺封面图片样式 */
+.shop-image {
+  width: 100%;
+  height: 360rpx;
+  background: #f5f5f5;
+}
+
+/* 店铺信息区域样式 */
+.shop-info {
+  padding: 24rpx;
+}
+
+/* 店铺标题区域样式 */
+.shop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+/* 店铺名称样式 */
+.shop-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+/* 店铺分类标签样式 */
+.shop-category {
+  font-size: 24rpx;
+  color: var(--primary, #2953FF);
+  background: rgba(41, 83, 255, 0.1);
+  padding: 4rpx 16rpx;
+  border-radius: 8rpx;
+}
+
+/* 卡片内容区域样式 */
+.info {
+  padding: 16rpx;
+}
+
+/* 店铺名称样式 */
+.name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+/* 分类标签样式 */
+.category {
+  display: inline-block;
+  font-size: 20rpx;
+  color: #ff4d4f;
+  background: rgba(255, 77, 79, 0.1);
+  padding: 2rpx 8rpx;
+  border-radius: 6rpx;
+  margin-bottom: 8rpx;
+}
+
+/* 地址文本样式 */
+.address {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+/* 店铺地址区域样式 */
+.shop-address {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+/* 地址图标样式 */
+.address-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 8rpx;
+}
+
+/* 地址文本样式 */
+.address-text {
+  font-size: 24rpx;
+  color: #666;
+  flex: 1;
+}
+
+/* 复制按钮样式 */
+.copy-btn {
+  display: flex;
+  align-items: center;
+  padding: 4rpx 12rpx;
+  background: #f5f5f5;
+  border-radius: 24rpx;
+}
+
+/* 复制图标样式 */
+.copy-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+}
+
+/* 复制按钮文本样式 */
+.copy-btn text {
+  font-size: 20rpx;
+  color: #666;
+}
+
+/* 加载状态样式 */
+.loading,
+.no-more,
+.empty {
+  text-align: center;
+  padding: 32rpx;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 空状态图标样式 */
+.empty-icon {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 16rpx;
+}
+
+/* 标签行样式 */
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rpx;
+  margin-top: 8rpx;
+}
+
+/* 标签样式 */
+.tag {
+  padding: 4rpx 12rpx;
+  background: rgba(41, 83, 255, 0.1);
+  border-radius: 12rpx;
+  font-size: 20rpx;
+  color: var(--primary, #2953FF);
+  line-height: 1.2;
 }

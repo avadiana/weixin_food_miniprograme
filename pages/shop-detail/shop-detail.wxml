@@ -1,0 +1,120 @@
+<!-- 店铺详情页面 -->
+<view class="container">
+  <!-- 顶部导航栏 - 包含返回按钮和主页按钮 -->
+  <view class="nav-bar">
+    <!-- 返回按钮 -->
+    <view class="back-btn" bindtap="goBack">
+      <image class="back-icon" src="/images/back.svg" mode="aspectFit"/>
+      <text>返回</text>
+    </view>
+    <!-- 页面标题 -->
+    <view class="page-title">店铺详情</view>
+    <!-- 返回主页按钮 -->
+    <view class="home-btn" bindtap="goHome">
+      <image class="home-icon" src="/images/home.svg" mode="aspectFit"/>
+      <text>主页</text>
+    </view>
+  </view>
+
+  <!-- 店铺详情内容区域 -->
+  <view class="shop-detail">
+    <!-- 图片轮播组件 -->
+    <swiper 
+      class="photos-swiper" 
+      indicator-dots 
+      circular
+      wx:if="{{shop.photos && shop.photos.length > 0}}"
+    >
+      <!-- 轮播图片项 -->
+      <swiper-item wx:for="{{shop.photos}}" wx:key="*this">
+        <image 
+          src="{{item}}" 
+          mode="aspectFill" 
+          class="shop-photo"
+          bindtap="previewImage"
+          data-url="{{item}}"
+        />
+      </swiper-item>
+    </swiper>
+
+    <!-- 店铺基本信息区域 -->
+    <view class="info-section">
+      <!-- 店铺名称 -->
+      <view class="shop-name">{{shop.name}}</view>
+      <!-- 店铺分类标签 -->
+      <view class="shop-category">{{shop.category}}</view>
+      
+      <!-- 人均消费信息 -->
+      <view class="info-item">
+        <text class="label">人均消费：</text>
+        <text class="value">¥{{shop.averagePrice || '暂无'}}</text>
+      </view>
+
+      <!-- 地址信息及复制功能 -->
+      <view class="info-item address">
+        <text class="label">地址：</text>
+        <text class="value">{{shop.address}}</text>
+        <view class="copy-btn" bindtap="copyAddress">
+          <image class="copy-icon" src="/images/copy.svg" mode="aspectFit"/>
+          <text class="copy-text">复制</text>
+        </view>
+      </view>
+
+      <!-- 注释掉地图组件 -->
+      <!-- <view class="map-section" wx:if="{{latitude && longitude}}">
+        <map 
+          class="map"
+          style="height: {{mapHeight}}rpx"
+          latitude="{{latitude}}"
+          longitude="{{longitude}}"
+          markers="{{markers}}"
+          scale="16"
+          show-location
+          enable-zoom
+          enable-scroll
+        ></map>
+        <view class="map-actions">
+          <button class="map-btn" bindtap="openLocation">
+            <image class="btn-icon" src="/images/navigation.svg" mode="aspectFit"/>
+            <text class="btn-text">导航</text>
+          </button>
+        </view>
+      </view> -->
+
+      <!-- 贡献者信息展示 -->
+      <view class="contributor">
+        <image class="avatar" src="{{shop.creator.avatarUrl}}" mode="aspectFill"/>
+        <text class="name">{{shop.creator.nickName}}</text>
+        <text class="time">{{shop.createTime}}</text>
+      </view>
+
+      <!-- 店铺标签展示区域 -->
+      <view class="tags-row" wx:if="{{shop.tags.length}}">
+        <view class="tag" wx:for="{{shop.tags}}" wx:key="*this">{{item}}</view>
+      </view>
+
+      <!-- 备注信息展示区域 -->
+      <view class="remarks-section" wx:if="{{shop.remarks}}">
+        <view class="section-title">备注信息</view>
+        <view class="remarks-content">{{shop.remarks}}</view>
+      </view>
+    </view>
+
+    <!-- 菜单图片展示区域 -->
+    <view class="menu-section" wx:if="{{shop.menuPhotos && shop.menuPhotos.length > 0}}">
+      <view class="section-title">菜单</view>
+      <view class="menu-photos">
+        <!-- 菜单图片项 - 支持点击预览 -->
+        <image 
+          wx:for="{{shop.menuPhotos}}" 
+          wx:key="*this"
+          src="{{item}}"
+          mode="aspectFill"
+          class="menu-photo"
+          bindtap="previewMenu"
+          data-url="{{item}}"
+        />
+      </view>
+    </view>
+  </view>
+</view> 

@@ -1,0 +1,7 @@
+{
+    "usingComponents": {},
+    "navigationBarTitleText": "店铺贡献排行榜",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#F5F5F5",
+    "navigationStyle": "custom"
+}

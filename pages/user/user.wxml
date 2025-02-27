@@ -1,0 +1,105 @@
+<view class="container" style="padding-top: {{statusBarHeight}}px">
+  <!-- 复合信息卡片 -->
+  <view class="compound-card">
+    <!-- 用户信息区域 -->
+    <view class="user-section" style="padding-top: {{navBarHeight}}px">
+      <!-- 未登录状态 -->
+      <view wx:if="{{!userInfo}}" class="login-section">
+        <!-- 头像选择按钮 -->
+        <button 
+          class="avatar-wrapper"
+          open-type="chooseAvatar" 
+          bindchooseavatar="onChooseAvatar"
+        >
+          <image class="avatar" src="{{tempUserInfo.avatarUrl || '/images/user.svg'}}" mode="aspectFill"/>
+          <text class="avatar-tip">点击选择头像</text>
+        </button>
+        
+        <!-- 昵称输入框 -->
+        <input
+          type="nickname"
+          class="nickname-input"
+          placeholder="点击此处输入昵称"
+          bindchange="onInputNickname"
+          value="{{tempUserInfo.nickName}}"
+        />
+        
+        <!-- 登录步骤提示 -->
+        <view class="login-tips" wx:if="{{!tempUserInfo.avatarUrl || !tempUserInfo.nickName}}">
+          <text class="tip-text">{{!tempUserInfo.avatarUrl ? '1. 请先点击上方头像框选择头像' : (!tempUserInfo.nickName ? '2. 请输入您的昵称' : '')}}</text>
+        </view>
+        
+        <!-- 登录按钮 -->
+        <button 
+          class="auth-btn"
+          bindtap="handlePrivacyAuth"
+          disabled="{{!tempUserInfo.avatarUrl || !tempUserInfo.nickName}}"
+        >
+          <text>微信快捷登录</text>
+        </button>
+        
+        <text class="privacy-tip">登录即表示同意《用户协议》和《隐私政策》</text>
+      </view>
+      
+      <!-- 已登录但未同步资料 -->
+      <view wx:elif="{{!userInfo.nickName}}" class="login-section">
+        <view class="avatar-wrapper">
+          <image class="avatar" src="/images/user.svg" mode="aspectFill"/>
+        </view>
+        <button 
+          class="profile-btn"
+          bindtap="handleGetProfile"
+        >同步微信资料</button>
+        <text class="skip-btn" bindtap="handleSkipProfile">暂不同步</text>
+      </view>
+      
+      <!-- 已登录且已同步资料 -->
+      <view wx:else class="user-info">
+        <view class="avatar-wrapper">
+          <image class="avatar" src="{{userInfo.avatarUrl || '/images/user.svg'}}" mode="aspectFill"/>
+        </view>
+        <text class="nickname">{{userInfo.nickName || '微信用户'}}</text>
+        <view class="logout-btn" bind:tap="handleLogout">退出登录</view>
+      </view>
+    </view>
+
+    <!-- 内联统计区域 -->
+    <view class="stats-section">
+      <view class="stats-item">
+        <text class="stats-num">{{contributedCount}}</text>
+        <text class="stats-label">已贡献店铺</text>
+      </view>
+      <view class="stats-divider"/>
+      <view class="stats-item">
+        <text class="stats-num">{{favoriteCount}}</text>
+        <text class="stats-label">已收藏店铺</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能网格 -->
+  <view class="feature-grid">
+    <view class="grid-item" bindtap="goToMyShops">
+      <image class="grid-icon" src="/images/my-shops.svg" mode="aspectFit"/>
+      <text class="grid-text">我提供的店铺</text>
+      <text class="grid-badge">{{contributedCount}}</text>
+    </view>
+    <view class="grid-item" bindtap="goToFavorites">
+      <image class="grid-icon" src="/images/favorite.svg" mode="aspectFit"/>
+      <text class="grid-text">我的收藏</text>
+      <text class="grid-badge">{{favoriteCount}}</text>
+    </view>
+    <view class="grid-item" bindtap="goToRanking">
+      <image class="grid-icon" src="/images/ranking.svg" mode="aspectFit"/>
+      <text class="grid-text">贡献排行榜</text>
+    </view>
+  </view>
+
+  <!-- 刷新按钮 -->
+  <view class="refresh-container">
+    <view class="refresh-btn" bindtap="handleRefresh">
+      <image class="refresh-icon" src="/images/refresh.svg" mode="aspectFit"/>
+      <text class="refresh-text">刷新统计</text>
+    </view>
+  </view>
+</view> 

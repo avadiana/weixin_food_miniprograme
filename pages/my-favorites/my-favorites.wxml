@@ -1,0 +1,65 @@
+<!-- 我的收藏页面 -->
+<view class="container" style="padding-top: {{statusBarHeight + navBarHeight}}px">
+  <!-- 自定义导航栏 - 适配不同机型状态栏高度 -->
+  <view class="nav-bar" style="padding-top: {{statusBarHeight}}px; height: {{navBarHeight}}px;">
+    <view class="nav-content">
+      <!-- 返回按钮 -->
+      <view class="back-btn" bindtap="goBack">
+        <image class="back-icon" src="/images/back.svg" mode="aspectFit"/>
+        <text>返回</text>
+      </view>
+      <!-- 页面标题 -->
+      <view class="page-title">我的收藏</view>
+    </view>
+  </view>
+
+  <!-- 空状态提示 - 当没有收藏店铺时显示 -->
+  <view class="empty-state" wx:if="{{!shopList.length}}">
+    <image class="empty-icon" src="/images/empty.svg" mode="aspectFit"/>
+    <text class="empty-text">还没有收藏店铺~</text>
+  </view>
+
+  <!-- 收藏店铺列表 -->
+  <view class="shop-list" wx:else>
+    <!-- 店铺卡片 -->
+    <view class="shop-item" wx:for="{{shopList}}" wx:key="_id">
+      <!-- 店铺封面图片 - 点击跳转详情 -->
+      <image 
+        class="shop-image" 
+        src="{{item.photos[0]}}" 
+        mode="aspectFill"
+        bindtap="goToDetail"
+        data-id="{{item._id}}"
+      />
+      
+      <!-- 店铺信息区域 -->
+      <view class="shop-info">
+        <!-- 店铺名称和分类 -->
+        <view class="shop-header">
+          <text class="shop-name">{{item.name}}</text>
+          <text class="shop-category">{{item.category}}</text>
+        </view>
+        
+        <!-- 店铺地址 - 支持点击复制 -->
+        <view class="shop-address" bindtap="copyAddress" data-address="{{item.address}}">
+          <image class="address-icon" src="/images/marker.svg" mode="aspectFit"/>
+          <text class="address-text">{{item.address}}</text>
+        </view>
+
+        <!-- 操作按钮区域 -->
+        <view class="shop-actions">
+          <!-- 取消收藏按钮 -->
+          <view class="action-btn cancel-btn" catchtap="cancelFavorite" data-id="{{item._id}}">
+            <image class="action-icon" src="/images/favorite-fill.svg" mode="aspectFit"/>
+            <text>取消收藏</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载状态提示 -->
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+  <!-- 无更多数据提示 -->
+  <view class="no-more" wx:if="{{!hasMore && shopList.length > 0}}">没有更多了</view>
+</view> 

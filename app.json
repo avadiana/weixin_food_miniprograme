@@ -1,29 +1,47 @@
 {
   "pages": [
     "pages/list/list",
-    "pages/add/add"
+    "pages/add/add",
+    "pages/edit/edit",
+    "pages/user/user",
+    "pages/my-shops/my-shops",
+    "pages/shop-detail/shop-detail",
+    "pages/my-favorites/my-favorites",
+    "pages/ranking/ranking"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "美食探店",
+    "navigationBarTitleText": "探店地图",
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
-  "style": "v2",
-  "renderer": "skyline",
-  "rendererOptions": {
-    "skyline": {
-      "defaultDisplayBlock": true,
-      "defaultContentBox": true,
-      "tagNameStyleIsolation": "legacy",
-      "disableABTest": true,
-      "sdkVersionBegin": "3.0.0",
-      "sdkVersionEnd": "15.255.255"
-    }
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#FF6B6B",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/list/list",
+        "text": "店铺信息",
+        "iconPath": "images/shop.png",
+        "selectedIconPath": "images/shop-active.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "用户中心",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user-active.png"
+      }
+    ]
   },
-  "componentFramework": "glass-easel",
+  "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于显示店铺位置"
+    }
+  }
 }

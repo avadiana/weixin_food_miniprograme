@@ -1,5 +1,6 @@
+<!-- 店铺编辑页面 -->
 <view class="container">
-  <!-- 顶部导航栏 -->
+  <!-- 顶部导航栏 - 包含返回按钮和页面标题 -->
   <view class="nav-bar">
     <view class="back-btn" bindtap="goBack">
       <image class="back-icon" src="/images/back.svg" mode="aspectFit"/>
@@ -8,7 +9,9 @@
     <view class="page-title">修改店铺</view>
   </view>
 
+  <!-- 店铺信息编辑表单 -->
   <form bindsubmit="submitForm">
+    <!-- 店铺名称输入区域 -->
     <view class="form-group">
       <view class="label">店铺名称</view>
       <input 
@@ -19,6 +22,7 @@
       />
     </view>
 
+    <!-- 店铺地址输入区域 -->
     <view class="form-group">
       <view class="label">店铺地址</view>
       <input 
@@ -29,6 +33,7 @@
       />
     </view>
 
+    <!-- 店铺分类选择器 -->
     <view class="form-group">
       <view class="label">店铺分类</view>
       <picker 
@@ -42,9 +47,23 @@
       </picker>
     </view>
 
+    <!-- 人均消费输入区域 -->
+    <view class="form-group">
+      <view class="label">人均消费</view>
+      <input 
+        class="input" 
+        type="number" 
+        placeholder="请输入人均消费金额" 
+        value="{{averagePrice}}"
+        bindinput="onAveragePriceInput"
+      />
+    </view>
+
+    <!-- 店铺图片上传区域 -->
     <view class="form-group">
       <view class="label">店铺图片</view>
       <view class="image-list">
+        <!-- 已上传图片展示 -->
         <view 
           class="image-item" 
           wx:for="{{photos}}" 
@@ -58,6 +77,7 @@
           >×</view>
         </view>
         
+        <!-- 图片上传按钮 -->
         <view 
           class="upload-btn" 
           bindtap="chooseImage" 
@@ -69,6 +89,78 @@
       </view>
     </view>
 
+    <!-- 菜单图片上传区域 -->
+    <view class="form-group">
+      <view class="label">菜单图片</view>
+      <view class="image-list">
+        <!-- 已上传菜单图片展示 -->
+        <view 
+          class="image-item" 
+          wx:for="{{menuPhotos}}" 
+          wx:key="*this"
+        >
+          <image src="{{item}}" mode="aspectFill"/>
+          <view 
+            class="delete-btn"
+            data-index="{{index}}"
+            bindtap="deleteMenuPhoto"
+          >×</view>
+        </view>
+        
+        <!-- 菜单图片上传按钮 -->
+        <view 
+          class="upload-btn" 
+          bindtap="chooseMenuImage" 
+          wx:if="{{menuPhotos.length < 5}}"
+        >
+          <view class="icon">+</view>
+          <view class="text">上传菜单</view>
+        </view>
+      </view>
+      <view class="tips">最多上传5张菜单图片</view>
+    </view>
+
+    <!-- 店铺标签选择区域 -->
+    <view class="form-item">
+      <text class="label">店铺标签</text>
+      <view class="tags-container">
+        <!-- 预设标签列表 -->
+        <view class="tag-item {{item.selected ? 'selected' : ''}}" 
+              wx:for="{{tagOptions}}" 
+              wx:key="value"
+              bindtap="toggleTag"
+              data-tag="{{item.value}}">
+          {{item.label}}
+        </view>
+        <!-- 自定义标签输入框 -->
+        <view class="custom-tag" wx:if="{{showCustomTagInput}}">
+          <input class="tag-input" 
+                 value="{{customTag}}"
+                 placeholder="输入自定义标签"
+                 bindconfirm="addCustomTag"
+                 bindblur="addCustomTag"/>
+        </view>
+        <!-- 添加自定义标签按钮 -->
+        <view class="add-tag-btn" bindtap="showCustomTagInput">
+          <text>+</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 备注信息输入区域 -->
+    <view class="form-group">
+      <view class="label">备注信息</view>
+      <textarea 
+        class="textarea" 
+        placeholder="添加一些备注信息（可选）" 
+        value="{{remarks}}"
+        bindinput="onRemarksInput"
+        maxlength="200"
+      />
+      <view class="tips">最多200字</view>
+    </view>
+
+    <!-- 提交按钮 -->
     <button 
       class="submit-btn" 
       loading="{{submitting}}"

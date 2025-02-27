@@ -1,0 +1,330 @@
+/* 页面主容器样式 */
+.container {
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding-top: 120rpx; /* 为顶部导航栏预留空间 */
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* 顶部导航栏样式 - 固定定位 */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 140rpx;
+  background: #fff;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 30rpx 16rpx;
+  z-index: 100;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+/* 返回按钮和主页按钮共用样式 */
+.back-btn, .home-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 20rpx 0;
+  height: 35rpx;
+}
+
+/* 返回按钮位置调整 */
+.back-btn {
+  margin-left: -16rpx;
+  height: 28rpx;
+}
+
+/* 主页按钮位置调整 */
+.home-btn {
+  margin-right: -16rpx;
+}
+
+/* 按钮图标样式 */
+.back-icon, .home-icon {
+  width: 29rpx;
+  height: 32rpx;
+  margin-right: 4rpx;
+}
+
+/* 返回按钮文字样式 */
+.back-btn text {
+  font-size: 32rpx;
+  color: #666;
+  position: relative;
+  top: -4rpx;
+}
+
+/* 主页按钮文字样式 */
+.home-btn text {
+  font-size: 32rpx;
+  color: #666;
+  position: relative;
+  top: -0.5rpx;
+}
+
+/* 页面标题样式 - 居中显示 */
+.page-title {
+  flex: 1;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+
+/* 店铺详情内容区域样式 */
+.shop-detail {
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* 图片轮播容器样式 */
+.photos-swiper {
+  width: 100%;
+  height: 500rpx;
+}
+
+/* 轮播图片样式 */
+.shop-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 信息区块基础样式 */
+.info-section {
+  padding: 30rpx;
+}
+
+/* 店铺名称样式 */
+.shop-name {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+/* 店铺分类标签样式 */
+.shop-category {
+  display: inline-block;
+  font-size: 24rpx;
+  color: #FF6B6B;
+  padding: 6rpx 16rpx;
+  background: #FFF0F0;
+  border-radius: 8rpx;
+  margin-bottom: 24rpx;
+}
+
+/* 信息项基础样式 */
+.info-item {
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+/* 信息项标签样式 */
+.label {
+  color: #999;
+  margin-right: 8rpx;
+}
+
+/* 信息项内容样式 */
+.value {
+  color: #333;
+}
+
+/* 地址信息样式 */
+.address {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* 地址文本样式 */
+.address .value {
+  flex: 1;
+}
+
+/* 复制按钮样式 */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 12rpx;
+  background: #f5f5f5;
+  border-radius: 24rpx;
+  margin-left: 16rpx;
+}
+
+/* 复制图标样式 */
+.copy-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 4rpx;
+}
+
+/* 复制按钮文本样式 */
+.copy-btn .copy-text {
+  font-size: 22rpx;
+  color: #666;
+}
+
+/* 贡献者信息容器样式 */
+.contributor {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+  padding-top: 30rpx;
+  border-top: 2rpx solid #f5f5f5;
+}
+
+/* 贡献者头像样式 */
+.avatar {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+
+/* 贡献者昵称样式 */
+.name {
+  font-size: 26rpx;
+  color: #666;
+  margin-right: 16rpx;
+}
+
+/* 贡献时间样式 */
+.time {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 菜单区域样式 */
+.menu-section {
+  padding: 30rpx;
+  border-top: 16rpx solid #f5f5f5;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 区域标题样式 */
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 24rpx;
+}
+
+/* 菜单图片网格布局 */
+.menu-photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+  width: 100%;
+}
+
+/* 菜单图片样式 */
+.menu-photo {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 12rpx;
+  object-fit: cover;
+}
+
+/* 地图区域样式 */
+.map-section {
+  margin: 30rpx 0;
+  border-top: 2rpx solid #f5f5f5;
+  padding-top: 30rpx;
+}
+
+/* 地图容器样式 */
+.map {
+  width: 100%;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+
+/* 地图操作按钮容器 */
+.map-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20rpx;
+}
+
+/* 地图按钮基础样式 */
+.map-btn {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 32rpx;
+  background: #f8f8f8;
+  border-radius: 32rpx;
+  border: none;
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 移除地图按钮默认边框 */
+.map-btn::after {
+  display: none;
+}
+
+/* 地图按钮图标样式 */
+.btn-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
+/* 标签行样式 */
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin: var(--spacing-sm) 0;
+}
+
+/* 标签样式 */
+.tag {
+  padding: 4rpx 16rpx;
+  background: rgba(41, 83, 255, 0.1);
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  color: var(--primary);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* 标签点击效果 */
+.tag:active {
+  transform: scale(0.95);
+}
+
+/* 备注信息区域样式 */
+.remarks-section {
+  margin-top: 30rpx;
+  padding-top: 30rpx;
+  border-top: 2rpx solid #f5f5f5;
+}
+
+/* 备注内容样式 */
+.remarks-content {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+  padding: 16rpx 0;
+  white-space: pre-wrap; /* 保留换行符 */
+}
+
+/* 轮播动画优化 */
+.swiper {
+  transition: height 0.3s ease;
+  will-change: transform;
+}
+
+/* 滚动容器性能优化 */
+.detail-container {
+  will-change: transform;
+  -webkit-overflow-scrolling: touch;
+} 

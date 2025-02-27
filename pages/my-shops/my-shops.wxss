@@ -1,0 +1,212 @@
+/* 基础变量 */
+page {
+  --spacing-xs: 8rpx;
+  --spacing-sm: 16rpx;
+  --spacing-md: 24rpx;
+  --spacing-lg: 32rpx;
+  --nav-height: 88rpx;
+  --card-radius: 16rpx;
+  --btn-radius: 8rpx;
+}
+
+/* 容器基础样式 */
+.container {
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding: var(--spacing-md);
+}
+
+/* 导航栏 */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 100;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.nav-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--spacing-md);
+}
+
+.back-btn {
+  position: absolute;
+  left: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: var(--spacing-sm);
+  margin-left: calc(-1 * var(--spacing-sm));
+}
+
+.back-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: var(--spacing-xs);
+}
+
+.page-title {
+  flex: 1;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+/* 空状态样式 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg) 0;
+  min-height: 60vh; /* 垂直居中偏移 */
+  transform: translateY(-12%);
+}
+
+.empty-icon {
+  width: 180rpx;
+  height: 180rpx;
+  margin-bottom: var(--spacing-md);
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+/* 店铺列表样式 */
+.shop-list {
+  padding-bottom: var(--spacing-lg);
+}
+
+.shop-item {
+  background: #fff;
+  border-radius: var(--card-radius);
+  margin-bottom: var(--spacing-md);
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+
+.shop-image {
+  width: 100%;
+  height: 28vh;
+  aspect-ratio: 3/2; /* 固定宽高比 */
+  object-fit: cover;
+}
+
+.shop-info {
+  padding: var(--spacing-md);
+}
+
+.shop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-sm);
+}
+
+.shop-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.shop-category {
+  font-size: 24rpx;
+  color: #2953FF;
+  background: rgba(41, 83, 255, 0.1);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--btn-radius);
+}
+
+.shop-address {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.address-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: var(--spacing-xs);
+}
+
+.address-text {
+  font-size: 28rpx;
+  color: #666;
+  flex: 1;
+}
+
+/* 操作按钮样式 */
+.shop-actions {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--btn-radius);
+  font-size: 28rpx;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.action-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: var(--spacing-xs);
+  opacity: 0.8;
+}
+
+.edit-btn {
+  background: #f5f5f5;
+  color: #666;
+  border-color: #e8e8e8;
+}
+
+.delete-btn {
+  background: #fff0f0;
+  color: #ff4d4f;
+  border-color: #ffccc7;
+}
+
+.edit-btn:active {
+  background: #e8e8e8;
+  transform: translateY(1px);
+}
+
+.delete-btn:active {
+  background: #fff1f0;
+  transform: translateY(1px);
+}
+
+/* 滚动优化 */
+.scroll-container {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.add-btn {
+  display: inline-block;
+  margin-top: 30rpx;
+  padding: 20rpx 60rpx;
+  background: #FF6B6B;
+  color: #fff;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+} 

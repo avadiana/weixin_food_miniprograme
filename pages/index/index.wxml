@@ -1,7 +1,99 @@
 <!--index.wxml-->
+<!--首页模板，目前功能已迁移到list页面，此页面保留但不使用-->
+
+<!--导航栏组件-->
 <navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+
+<!--页面主滚动区域-->
 <scroll-view class="scrollarea" scroll-y type="list">
   <view class="container">
-    Weixin
+    <!-- 顶部分类栏 - 支持横向滚动的分类选择器 -->
+    <scroll-view class="category-bar" scroll-x>
+      <view 
+        class="category-item {{currentCategory === index ? 'active' : ''}}"
+        wx:for="{{categories}}"
+        wx:key="*this"
+        bindtap="switchCategory"
+        data-index="{{index}}"
+      >{{item}}</view>
+    </scroll-view>
+
+    <!-- 瀑布流布局 - 双列展示店铺卡片 -->
+    <view class="waterfall">
+      <!-- 左列店铺卡片 -->
+      <view class="column">
+        <view class="shop-card" 
+              wx:for="{{leftColumn}}" 
+              wx:key="_id"
+              bindtap="goToDetail" 
+              data-id="{{item._id}}"
+        >
+          <!-- 店铺封面图 -->
+          <image class="cover" src="{{item.photos[0]}}" mode="widthFix" lazy-load/>
+          <view class="info">
+            <!-- 店铺基本信息 -->
+            <view class="name">{{item.name}}</view>
+            <view class="category">{{item.category}}</view>
+            <!-- 店铺地址信息及复制功能 -->
+            <view class="shop-address">
+              <image class="address-icon" src="/images/marker.svg" mode="aspectFit"/>
+              <text class="address-text">{{item.address}}</text>
+              <view class="copy-btn" catchtap="copyAddress" data-address="{{item.address}}">
+                <image class="copy-icon" src="/images/copy.svg" mode="aspectFit"/>
+                <text>复制</text>
+              </view>
+            </view>
+            <!-- 店铺标签展示 -->
+            <view class="tags-row" wx:if="{{item.tags && item.tags.length}}">
+              <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">
+                {{tag}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 右列店铺卡片 -->
+      <view class="column">
+        <view class="shop-card" 
+              wx:for="{{rightColumn}}" 
+              wx:key="_id"
+              bindtap="goToDetail" 
+              data-id="{{item._id}}"
+        >
+          <!-- 店铺封面图 -->
+          <image class="cover" src="{{item.photos[0]}}" mode="widthFix" lazy-load/>
+          <view class="info">
+            <!-- 店铺基本信息 -->
+            <view class="name">{{item.name}}</view>
+            <view class="category">{{item.category}}</view>
+            <!-- 店铺地址信息及复制功能 -->
+            <view class="shop-address">
+              <image class="address-icon" src="/images/marker.svg" mode="aspectFit"/>
+              <text class="address-text">{{item.address}}</text>
+              <view class="copy-btn" catchtap="copyAddress" data-address="{{item.address}}">
+                <image class="copy-icon" src="/images/copy.svg" mode="aspectFit"/>
+                <text>复制</text>
+              </view>
+            </view>
+            <!-- 店铺标签展示 -->
+            <view class="tags-row" wx:if="{{item.tags && item.tags.length}}">
+              <view class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">
+                {{tag}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载状态提示 -->
+    <view class="loading" wx:if="{{loading}}">加载中...</view>
+    <view class="no-more" wx:if="{{!hasMore && shopList.length > 0}}">没有更多了</view>
+    <!-- 空状态提示 -->
+    <view class="empty" wx:if="{{!loading && shopList.length === 0}}">
+      <image class="empty-icon" src="/images/empty.svg" mode="aspectFit"/>
+      <text>暂无店铺信息</text>
+    </view>
   </view>
 </scroll-view>

@@ -1,0 +1,15 @@
+<!-- 标签选择区域 -->
+<view class="tags-section">
+  <view class="section-title">店铺标签</view>
+  <view class="tags-container">
+    <view 
+      wx:for="{{tagOptions}}" 
+      wx:key="value"
+      class="tag {{selectedTags.includes(item.value) ? 'selected' : ''}}"
+      bindtap="handleTagSelect"
+      data-value="{{item.value}}"
+    >
+      {{item.label}}
+    </view>
+  </view>
+</view> 

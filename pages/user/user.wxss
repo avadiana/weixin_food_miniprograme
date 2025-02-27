@@ -1,0 +1,641 @@
+/* 基础变量定义 */
+page {
+  --primary: #2953FF;
+  --primary-light: #93A8FF;
+  --accent: #FF7D41;
+  --text-primary: #333;
+  --text-secondary: #666;
+  --shadow-sm: 0 4rpx 12rpx rgba(41, 83, 255, 0.1);
+  --shadow-md: 0 8rpx 24rpx rgba(41, 83, 255, 0.15);
+  --spacing-micro: 4rpx;
+  --spacing-mini: 8rpx;
+  --spacing-small: 16rpx;
+  --spacing-base: 24rpx;
+  --spacing-large: 32rpx;
+  --spacing-xlarge: 40rpx;
+}
+
+/* 容器基础样式 */
+.container {
+  min-height: 100vh;
+  background: #f8f8f8;
+}
+
+/* 现代卡片设计 */
+.card-base {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16rpx;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: var(--spacing-md);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-base:active {
+  transform: scale(0.98);
+}
+
+/* 用户信息卡片 */
+.user-card {
+  composes: card-base;
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, rgba(41, 83, 255, 0.05) 0%, rgba(147, 168, 255, 0.1) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 磨砂玻璃效果头像 */
+.avatar-container {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 auto var(--spacing-md);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4rpx solid #ffffff;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 交互式数据统计 */
+.stats-card {
+  composes: card-base;
+  padding: var(--spacing-lg);
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+.stats-item {
+  position: relative;
+  text-align: center;
+}
+
+.stats-num {
+  font-size: 56rpx;
+  font-weight: 600;
+  color: var(--primary);
+  font-family: 'DIN Alternate';
+  transition: transform 0.3s;
+}
+
+.stats-item:hover .stats-num {
+  transform: translateY(-6rpx);
+}
+
+.stats-label {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+  margin-top: var(--spacing-xs);
+}
+
+.stats-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 4rpx;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: translateX(-50%);
+  transition: width 0.3s;
+}
+
+.stats-item:hover .stats-line {
+  width: 60%;
+}
+
+/* 拟物化菜单 */
+.menu-card {
+  composes: card-base;
+  padding: 0;
+}
+
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-lg);
+  transition: all 0.3s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:active {
+  background: linear-gradient(90deg, rgba(41, 83, 255, 0.05), rgba(255, 125, 65, 0.05));
+}
+
+.menu-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-right: var(--spacing-md);
+  transition: transform 0.3s;
+}
+
+.menu-item:active .menu-icon {
+  transform: rotate(15deg);
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 32rpx;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.arrow-icon {
+  width: 32rpx;
+  height: 32rpx;
+  opacity: 0.5;
+  transition: transform 0.3s;
+}
+
+.menu-item:active .arrow-icon {
+  transform: translateX(6rpx);
+}
+
+/* 动态背景粒子 */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 6rpx;
+  height: 6rpx;
+  background: var(--primary-light);
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: move 3s infinite linear;
+}
+
+@keyframes move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(100rpx, 100rpx); }
+}
+
+/* 统一分割线 */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, 
+    rgba(41, 83, 255, 0.05), 
+    rgba(41, 83, 255, 0.1) 50%,
+    rgba(41, 83, 255, 0.05)
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  to { left: 100%; }
+}
+
+.login-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.default-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  margin-bottom: 20rpx;
+  border: 4rpx solid #f0f0f0;
+}
+
+.login-text {
+  color: #666;
+  font-size: 32rpx;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nickname {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 复合卡片样式 */
+.compound-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16rpx;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 0;
+  transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1), 
+              box-shadow 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* 用户信息区域 */
+.user-section {
+  position: relative;
+  background: linear-gradient(135deg, rgba(41, 83, 255, 0.05) 0%, rgba(147, 168, 255, 0.1) 100%);
+  margin-bottom: -32rpx;
+  overflow: hidden;
+}
+
+.avatar-wrapper {
+  width: 160rpx !important;
+  height: 160rpx !important;
+  padding: 0 !important;
+  border: none !important;
+  background: none !important;
+  border-radius: 50% !important;
+  overflow: hidden;
+  margin-bottom: 30rpx;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 4rpx solid #ffffff;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.nickname {
+  font-size: 32rpx;
+  line-height: 1.2;
+  color: var(--text-primary);
+  text-align: center;
+  margin-top: var(--spacing-micro);
+}
+
+/* 内联统计样式 */
+.stats-section {
+  padding: var(--spacing-large) var(--spacing-base) var(--spacing-base);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #fff;
+}
+
+.stats-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--spacing-base);
+}
+
+.stats-num {
+  font-size: 40rpx;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--primary);
+  margin-bottom: var(--spacing-micro);
+}
+
+.stats-label {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+  line-height: 1.2;
+}
+
+.stats-divider {
+  width: 1px;
+  height: 32rpx;
+  background: linear-gradient(to bottom, 
+    transparent,
+    rgba(41, 83, 255, 0.1),
+    transparent
+  );
+}
+
+/* 功能网格样式 */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-mini);
+  padding: var(--spacing-mini);
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: var(--shadow-sm);
+  margin-top: -1px;
+  position: relative;
+  z-index: 1;
+}
+
+.grid-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-base);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12rpx;
+  transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1), 
+              background-color 0.3s ease;
+}
+
+.grid-item:active {
+  transform: scale(0.95);
+  background-color: rgba(0,0,0,0.02);
+}
+
+.grid-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: var(--spacing-micro);
+}
+
+.grid-text {
+  font-size: 28rpx;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.grid-badge {
+  position: absolute;
+  top: var(--spacing-mini);
+  right: var(--spacing-mini);
+  min-width: 32rpx;
+  height: 32rpx;
+  padding: 0 var(--spacing-micro);
+  background: var(--accent);
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 32rpx;
+  text-align: center;
+  border-radius: 16rpx;
+}
+
+/* 动态间距适配 */
+@media screen and (min-height: 700px) {
+  page {
+    --dynamic-spacing: var(--spacing-large);
+  }
+}
+
+@media screen and (min-height: 800px) {
+  page {
+    --dynamic-spacing: var(--spacing-xlarge);
+  }
+}
+
+.sync-btn {
+  margin-top: 16rpx;
+  padding: 8rpx 24rpx;
+  background: #07c160;
+  color: #fff;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+}
+
+.sync-btn:active {
+  opacity: 0.8;
+}
+
+.logout-btn {
+  margin-top: 16rpx;
+  padding: 8rpx 24rpx;
+  background: #f5f5f5;
+  color: #999;
+  border-radius: 32rpx;
+  font-size: 28rpx;
+  transition: all 0.3s;
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.logout-btn:active {
+  background: #e5e5e5;
+  transform: scale(0.95);
+}
+
+.login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.nickname-input {
+  width: 80%;
+  height: 80rpx;
+  margin: 20rpx 0;
+  padding: 0 30rpx;
+  border-radius: 40rpx;
+  background-color: #f5f5f5;
+  font-size: 28rpx;
+  text-align: center;
+}
+
+.auth-btn {
+  width: 80% !important;
+  height: 88rpx !important;
+  line-height: 88rpx !important;
+  margin: 30rpx 0 !important;
+  border-radius: 44rpx !important;
+  background-color: #07c160 !important;
+  color: #ffffff !important;
+  font-size: 32rpx !important;
+  font-weight: 500 !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.auth-btn text {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.auth-btn[disabled] {
+  background-color: #9be6b4 !important;
+  color: #ffffff !important;
+}
+
+.privacy-tip {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 20rpx;
+}
+
+/* 头像选择按钮的悬浮提示文本样式 */
+.avatar-wrapper::after {
+  content: '点击选择头像';  /* 提示文本内容 */
+  position: absolute;  /* 绝对定位，相对于头像容器 */
+  bottom: 0;          /* 定位在底部 */
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);  /* 半透明黑色背景 */
+  color: #ffffff;     /* 白色文字 */
+  font-size: 20rpx;   /* 小字体 */
+  text-align: center; /* 文字居中 */
+  padding: 6rpx 0;    /* 上下内边距 */
+  transform: translateY(100%);  /* 初始状态隐藏在下方 */
+  transition: transform 0.3s;   /* 添加过渡动画 */
+}
+
+/* 鼠标悬浮时显示提示文本 */
+.avatar-wrapper:hover::after {
+  transform: translateY(0);  /* 移动到可见位置 */
+}
+
+/* 头像容器的基本样式 */
+.avatar-wrapper {
+  position: relative;  /* 作为定位参考 */
+  border: 6rpx solid #f0f0f0 !important;  /* 灰色边框 */
+  transition: all 0.3s;  /* 所有属性变化添加过渡动画 */
+}
+
+/* 头像点击效果 */
+.avatar-wrapper:active {
+  transform: scale(0.95);  /* 点击时略微缩小 */
+}
+
+/* 昵称输入框焦点状态 */
+.nickname-input:focus {
+  background-color: #ffffff;  /* 获得焦点时改为白色背景 */
+  box-shadow: 0 0 0 4rpx rgba(7, 193, 96, 0.1);  /* 添加绿色阴影效果 */
+}
+
+/* 授权按钮点击效果 */
+.auth-btn:active {
+  opacity: 0.9;  /* 降低透明度 */
+  transform: scale(0.98);  /* 略微缩小 */
+}
+
+/* 头像提示文本样式（与第一个类似但实现方式不同） */
+.avatar-tip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  font-size: 20rpx;
+  text-align: center;
+  padding: 6rpx 0;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+/* 鼠标悬浮时显示头像提示 */
+.avatar-wrapper:hover .avatar-tip {
+  transform: translateY(0);
+}
+
+/* 登录步骤提示容器 */
+.login-tips {
+  width: 80%;  /* 宽度占父元素80% */
+  margin: 20rpx 0;  /* 上下外边距 */
+  text-align: center;  /* 文字居中 */
+}
+
+/* 提示文本样式 */
+.tip-text {
+  font-size: 24rpx;  /* 小字体 */
+  color: #07c160;    /* 绿色文字 */
+  background: rgba(7, 193, 96, 0.1);  /* 浅绿色背景 */
+  padding: 8rpx 24rpx;  /* 内边距 */
+  border-radius: 24rpx;  /* 圆角 */
+  display: inline-block;  /* 行内块级元素 */
+}
+
+/* 昵称输入框基本样式 */
+.nickname-input {
+  width: 80%;  /* 宽度占父元素80% */
+  height: 40rpx;  /* 固定高度 */
+  margin: 20rpx 0;  /* 上下外边距 */
+  padding: 0 30rpx;  /* 左右内边距 */
+  border-radius: 80rpx;  /* 圆角 */
+  background-color: #f5f5f5;  /* 浅灰色背景 */
+  font-size: 28rpx;  /* 字体大小 */
+  text-align: center;  /* 文字居中 */
+  position: relative;  /* 相对定位 */
+}
+
+/* 昵称输入框焦点状态（与上面的相同） */
+.nickname-input:focus {
+  background-color: #ffffff;  /* 白色背景 */
+  box-shadow: 0 0 0 4rpx rgba(7, 193, 96, 0.1);  /* 绿色阴影 */
+}
+
+/* 刷新按钮容器 */
+.refresh-container {
+  padding: 30rpx;
+  display: flex;
+  justify-content: center;
+}
+
+/* 刷新按钮样式 */
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx 40rpx;
+  background: linear-gradient(135deg, #07c160, #0ab356);
+  border-radius: 40rpx;
+  box-shadow: 0 6rpx 16rpx rgba(7, 193, 96, 0.2);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+              box-shadow 0.3s ease,
+              background 0.3s ease;
+  width: 240rpx;  /* 固定宽度 */
+  position: relative; /* 添加相对定位 */
+}
+
+/* 刷新图标 */
+.refresh-icon {
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute; /* 绝对定位 */
+  left: 40rpx; /* 固定在左侧 */
+  filter: brightness(0) invert(1); /* 将图标改为白色 */
+}
+
+/* 刷新文字 */
+.refresh-text {
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 500;
+  text-align: center;
+  width: 100%; /* 占据全部宽度 */
+  padding: 0 36rpx; /* 为两侧图标预留空间 */
+}
+
+/* 点击效果 */
+.refresh-btn:active {
+  transform: scale(0.96);
+  box-shadow: 0 3rpx 8rpx rgba(7, 193, 96, 0.15);
+  background: linear-gradient(135deg, #06b054, #09a34d);
+} 
